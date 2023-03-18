@@ -62,6 +62,7 @@ export default function Home() {
       await tx.wait();
       setLoading(false);
       alert("You successfully minted a Crypto Dev!");
+      setlink(true);
       getTokenIdsMinted();
     } catch (error) {
       console.log(error);
@@ -78,7 +79,6 @@ export default function Home() {
       setLoading(true);
       await tx.wait();
       setLoading(false);
-
     } catch (error) {
       console.log(error);
     }
@@ -87,9 +87,9 @@ export default function Home() {
   const checkIfPreSaleStarted = async () => {
     try {
       const provider = await getProviderorSigner();
-      const nftContract = new Contract(contractAddress, abi , provider);
+      const nftContract = new Contract(contractAddress, abi, provider);
       const _presaleStarted = await nftContract.presaleStarted();
-      console.log("if it is true presale has started",_presaleStarted);
+      console.log("if it is true presale has started", _presaleStarted);
       if (!preSaleStarted) {
         await getOwner();
       }
@@ -140,7 +140,6 @@ export default function Home() {
     }
   };
 
-
   const getTokenIdsMinted = async () => {
     try {
       // Get the provider from web3Modal, which in our case is MetaMask
@@ -166,7 +165,7 @@ export default function Home() {
       setWalletConnected(true);
       getOwner();
       const _presaleStarted = checkIfPreSaleStarted();
-      if(_presaleStarted){
+      if (_presaleStarted) {
         checkIfPreSaleEnded();
       }
     } catch (error) {
@@ -184,7 +183,7 @@ export default function Home() {
         disableInjectedProvider: false,
       });
       // connectWallet();
-      
+
       // const _presaleStarted = checkIfPreSaleStarted();
       // if(_presaleStarted){
       //   checkIfPreSaleEnded();
@@ -205,10 +204,7 @@ export default function Home() {
       //   await getTokenIdsMinted();
       // }, 5 * 1000);
     }
-
   }, [walletConnected]);
-
-
 
   const renderButton = () => {
     if (!walletConnected) {
@@ -261,33 +257,35 @@ export default function Home() {
 
   return (
     <>
-       <div>
-      <Head>
-        <title>Crypto Devs</title>
-        <meta name="description" content="Whitelist-Dapp" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className={styles.main}>
-        <div>
-          <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
-          <div className={styles.description}>
-            {/* It&#39;s an NFT collection for developers in Crypto. */}
-            It's an NFT collection for developers in Crypto.
+      <div>
+        <Head>
+          <title>Crypto Dev</title>
+          <meta name="description" content="Whitelist-Dapp" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className={styles.main}>
+          <div>
+            <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
+            <div className={styles.description}>
+              {/* It&#39;s an NFT collection for developers in Crypto. */}
+              It's an NFT collection for developers in Crypto.
+            </div>
+            <div className={styles.openSea}>
+              <a target="_blank" href="https://testnets.opensea.io/assets/goerli/0x6e986e04f35014043de14b24f6d951eead9ef588">Check Crypto dev Collection on OpenSea.io...</a>
+            </div>
+            <div className={styles.description}>
+              {TokenIdsMinted}/20 have been minted
+            </div>
+            {renderButton()} <br />
+            
           </div>
-          <div className={styles.description}>
-            {TokenIdsMinted}/20 have been minted
+          <div>
+            {/* <img className={styles.image} src="./cryptodevs/0.svg" /> */}
           </div>
-          {renderButton()}
         </div>
-        <div>
-          {/* <img className={styles.image} src="./cryptodevs/0.svg" /> */}
-        </div>
-      </div>
 
-      <footer className={styles.footer}>
-        Made with &#10084; by Sameer
-      </footer>
-    </div>
+        <footer className={styles.footer}>Made with &#10084; by Sameer</footer>
+      </div>
     </>
   );
 }
