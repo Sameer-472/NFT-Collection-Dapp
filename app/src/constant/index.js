@@ -1,5 +1,5 @@
 // export const contractAddress =  "0x91f29469D5F42465e2E97b7F4af6079326736102"
-export const contractAddress =  "0xCC66E60A151bA69D19c992F5987DAECaE3C32074" // actual goerli address
+export const contractAddress =  "0x6E986e04f35014043DE14b24F6d951Eead9eF588" // actual goerli address
 // export const contractAddress =  "0x5FbDB2315678afecb367f032d93F642f64180aa3" // localhost address
 export const abi =  [
   {
